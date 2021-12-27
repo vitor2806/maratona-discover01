@@ -7,4 +7,30 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+}
 
+/* header style */
+header {
+    max-width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    padding: .5rem;
+    background-color: rgb(60, 92, 52);
+}
+
+#logo {
+    color: white;
+}
+
+#logo-dot {
+    color: darkcyan;
+}
+
+#logo-dollar {
+    color: lime;
+}
+/* end of header style */
