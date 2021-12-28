@@ -60,6 +60,24 @@ main h2#balance {
     color: white;
 }
 
+/* ==== buttons style ====*/
+
+a {
+    color: rgb(73, 170, 38);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(61, 215, 5);
+}
+
+.button.new-item {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+/* ==== buttons style ====*/
+
 .container {
     width: 70vw;
     display: flex;
