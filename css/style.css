@@ -10,13 +10,13 @@
 body {
     width: 100vw;
     height: 100vh;
-    position: relative;
+    background-color: rgb(240, 240, 250);
 }
 
 /* header style */
 header {
     width: 100%;
-    height: 20%;
+    height: 25%;
     display: flex;
     justify-content: center;
     padding: .5rem;
@@ -41,13 +41,12 @@ main {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
-    background-color: rgb(240, 240, 250);
+    position: relative;
 }
 
 .container {
     position: absolute;
-    top: 12%;
+    top: -10%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -63,6 +62,7 @@ main {
     gap: 1rem;
     border-radius: 0.25rem;
     background-color: white;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
 }
 
 .section-head {
@@ -73,20 +73,21 @@ main {
     color: rgb(141, 141, 141);
 }
 
-.total {
+#total,
+#total > .section-head {
     background-color: rgb(73, 170, 38);
     color: white;
 }
 
-.total > .section-head {
-    color: white;
-}
-
-.container section p {
+.money {
     font-size: 1.5em;
 }
 
-img {
+.money-container ~ img {
     height: 2em;
+}
+
+table {
+    height: fit-content;
 }
 /* end of balance style */

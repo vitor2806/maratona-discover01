@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,36 +13,65 @@
         <h1 id="logo">dev<span id="logo-dot">.</span>finance<span id="logo-dollar">$</span></h1>
     </header>
     <main>
-        <h2>Balanço</h2>
+        <!-- <h2>Balanço</h2> -->
         <div class="container">
-            <section class="profit money-container">
+            <section id="profit" class="money-container">
                 <div class="section-head">
                     <h3>Entradas</h3>
                     <img src="./assets/profit.svg" alt="Ícone de lucro">
                 </div>
-                <p>R$ 5.000,00</p>
+                <p class="money">R$ 5.000,00</p>
             </section>
 
-            <section class="loss money-container">
+            <section id="loss" class="money-container">
                 <div class="section-head">
                     <h3>Saídas</h3>
                     <img src="./assets/loss.svg" alt="Ícone de prejuízo">    
                 </div>
-                <p>R$ 4.000,00</p>
+                <p class="money">R$ 4.000,00</p>
             </section>
 
-            <section class="total money-container">
+            <section  id="total" class="money-container">
                 <div class="section-head">
                     <h3>Total</h3>
                     <img src="./assets/total.svg" alt="Ícone de total">
                 </div>
-                <p>R$ 1.000,00</p>  
+                <p class="money">R$ 1.000,00</p>  
             </section>
         </div>
-
-        <h2>Transações</h2>
+        <section>
+        <!-- <h2>Transações</h2> -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Luz</td>
+                    <td>- R$ 500,00</td>
+                    <td>23/01/2021</td>
+                </tr>
+                <tr>
+                    <td>Aluguel</td>
+                    <td>- R$ 2500,00</td>
+                    <td>25/01/2021</td>
+                </tr>
+                <tr>
+                    <td>Reparo moto</td>
+                    <td>- R$ 1000,00</td>
+                    <td>23/01/2021</td>
+                </tr>
+            </tbody>
+        </table>
+        </section>
     </main>
-    <footer></footer>
+    <footer>
+        <p>dev.finance$</p>
+    </footer>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
