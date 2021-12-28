@@ -30,6 +30,9 @@ body {
     border-width: 0;
 }
 
+.wrapper {
+    width: 80vw;
+}
 /* ==== end of global style ==== */
 
 /* ==== header style ==== */
@@ -79,7 +82,6 @@ a:hover {
 /* ==== buttons style ====*/
 
 .container {
-    width: 80vw;
     display: flex;
     flex-flow: column wrap;
     margin: auto;
@@ -133,7 +135,6 @@ a:hover {
 /* ==== table style ==== */
 
 .table-container {
-    width: 80vw;
     margin: 0 auto;
     margin-top: 3rem;
 }
@@ -154,6 +155,7 @@ table tbody tr td:last-child {
 table td {
     padding: 1rem 2rem;
     background: white;
+    white-space: nowrap;
 }
 
 table tbody tr {
@@ -176,7 +178,7 @@ td.description {
 }
 
 td.income {
-    color: rgb(0, 224, 0);
+    color: rgb(73, 170, 38);
 }
 
 td.outcome {
@@ -188,6 +190,7 @@ td.outcome {
 /* ==== footer style ==== */
 
 footer {
+    padding: 1rem;
     text-align: center;
     opacity: 0.6;
 }
@@ -202,7 +205,7 @@ footer {
         font-size: 83.75%;
     }
 
-    .container {
+    .wrapper {
         width: 90vw;
     }
 
@@ -217,20 +220,12 @@ footer {
     }
 
     .table-container {
-        width: 90vw;
+        overflow-x: auto;
         margin: 2rem auto 0;
     }
 
     #data-table {
         width: 100%;
-    }
-
-    table td {
-        padding: 1rem;
-    }
-
-    table th {
-        padding: .5rem 1rem;
     }
 
 }
