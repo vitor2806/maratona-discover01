@@ -9,4 +9,5 @@ exitButton.addEventListener('click', viewModal)
 
 function viewModal() {
     modalWindow.classList.toggle('active')
+    body.classList.toggle('overflow-hidden')
 }
