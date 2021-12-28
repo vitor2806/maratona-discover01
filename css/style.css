@@ -162,3 +162,12 @@ td.outcome {
 }
 
 /* ==== end of table style ==== */
+
+/* ==== footer style ==== */
+
+footer {
+    text-align: center;
+    opacity: 0.6;
+}
+
+/* ==== end of footer style ==== */
