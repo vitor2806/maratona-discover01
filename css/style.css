@@ -188,7 +188,7 @@ td.outcome {
 /* ==== modal style ==== */
 
 .modal-background {
-    z-index: 99;
+    z-index: 3;
     height: 100%;
     width: 100%;
     position: fixed;
@@ -196,6 +196,14 @@ td.outcome {
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.modal-background.active {
+    visibility: unset;
+    opacity: 1;
 }
 
 .modal {
@@ -214,7 +222,8 @@ td.outcome {
 }
 
 .modal form input {
-    display: inline-block;
+    display: block;
+    width: 100%;
     border: none;
     border-radius: .2rem;
     margin-block: .3rem;
