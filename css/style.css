@@ -75,6 +75,8 @@ a:hover {
 }
 
 .button.new-item {
+    position: sticky;
+    left: 0;
     display: inline-block;
     margin-bottom: 0.5rem;
 }
@@ -135,6 +137,7 @@ a:hover {
 /* ==== table style ==== */
 
 .table-container {
+    overflow-x: auto;
     margin: 0 auto;
     margin-top: 3rem;
 }
@@ -220,7 +223,6 @@ footer {
     }
 
     .table-container {
-        overflow-x: auto;
         margin: 2rem auto 0;
     }
 
