@@ -60,7 +60,7 @@ main h2#balance {
     display: flex;
     flex-flow: column wrap;
     margin: auto;
-    margin-top: -5rem;
+    margin-top: -7rem;
 }
 
 .container > div {
