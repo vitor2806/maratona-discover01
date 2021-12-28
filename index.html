@@ -13,10 +13,13 @@
         <div class="modal">
             <h2>Nova Transação</h2>
             <form action="">
-                <input type="text" name="transaction-desc" id="transaction-desc" placeholder="Descrição" aria-label="Descrição da transação">
-                <input type="number" name="transaction" id="transaction" placeholder="0,00" aria-label="Valor da transação">
+                <label for="transaction-desc" class="sr-only">Descrição da transação</label>
+                <input type="text" name="transaction-desc" id="transaction-desc" placeholder="Descrição">
+                <label for="transaction" class="sr-only">Valor da transação</label>
+                <input type="number" name="transaction" id="transaction" placeholder="0,00">
                 <p id="input-desc">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</p>
-                <input type="date" name="transaction-date" id="transaction-date" aria-label="Data da transação">
+                <label for="transaction-date" class="sr-only"></label>
+                <input type="date" name="transaction-date" id="transaction-date">
             </form>
             <section class="button-control">
                 <button id="exit">Cancelar</button><button id="save" type="submit">Salvar</button>
