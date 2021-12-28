@@ -47,11 +47,6 @@ header {
 
 /* ==== balance style ==== */
 
-main {
-    display: flex;
-    flex-flow: column wrap;
-}
-
 main h2 {
     margin: 3rem 0 1rem;
     font-weight: normal;
@@ -189,6 +184,96 @@ td.outcome {
 }
 
 /* ==== end of table style ==== */
+
+/* ==== modal style ==== */
+
+.modal-background {
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.modal {
+    padding: 2rem 1.5rem;
+    border-radius: 0.25rem;
+    background-color: rgb(240, 240, 250);
+}
+
+.modal h2 {
+    color: var(--title-color);
+}
+
+.modal form {
+    display: flex;
+    flex-flow: column;
+}
+
+.modal form input {
+    display: inline-block;
+    border: none;
+    border-radius: .2rem;
+    margin-block: .3rem;
+    padding: .8rem;
+}
+
+#transaction {
+    margin-bottom: 0;
+}
+
+#input-desc {
+    line-height: 2;
+    margin-bottom: .5rem;
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.button-control {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modal button {
+    flex: 1;
+    cursor: pointer;
+    border: none;
+    line-height: 0;
+    margin-top: .2rem;
+    padding: 1.5rem;
+    font-weight: 500;
+}
+
+.modal button:nth-of-type(1) {
+    background: transparent;
+    color: rgb(196, 0, 0);
+    border: 2px solid currentColor;
+    transition: background 300ms ease;
+}
+
+.modal button:nth-of-type(1):hover,
+.modal button:nth-of-type(1):focus {
+    background: rgb(196, 0, 0);
+    color: white;
+}
+    
+.modal button:nth-of-type(2) {
+    background: rgb(73, 170, 38);
+    border: 2px solid transparent;
+    color: white;
+    transition: background 300ms ease;
+}
+
+.modal button:nth-of-type(2):active {
+    background: rgb(60, 92, 52);
+}
+
+
+/* ==== end of modal style ==== */
 
 /* ==== footer style ==== */
 

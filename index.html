@@ -9,6 +9,21 @@
     <title>Controle de Finanças</title>
 </head>
 <body>
+    <div class="modal-background">
+        <div class="modal">
+            <h2>Nova Transação</h2>
+            <form action="">
+                <input type="text" name="transaction-desc" id="transaction-desc" placeholder="Descrição" aria-label="Descrição da transação">
+                <input type="number" name="transaction" id="transaction" placeholder="0,00" aria-label="Valor da transação">
+                <p id="input-desc">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</p>
+                <input type="date" name="transaction-date" id="transaction-date" aria-label="Data da transação">
+            </form>
+            <section class="button-control">
+                <button>Cancelar</button><button>Salvar</button>
+            </section>
+        </div>
+    </div>
+
     <header>
         <img src="./assets/logo.svg" alt="Logo dev finance">
     </header>
@@ -83,18 +98,6 @@
                 </tbody>
             </table>
         </section>
-
-        <div class="modal-background">
-            <div class="modal">
-                <h2>Nova Transação</h2>
-                <form action="">
-                    <input type="text" name="transaction-desc" id="transaction-desc">
-                    <input type="number" name="transaction" id="transaction">
-                    <input type="date" name="transaction-date" id="transaction-date">
-                </form>
-                <button>Cancelar</button><button>Salvar</button>
-            </div>
-        </div>
     </main>
 
     <footer>
