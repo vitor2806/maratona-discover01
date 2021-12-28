@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
+/* ==== global style ==== */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,13 +11,15 @@
 
 body {
     width: 100vw;
-    height: 100vh;
     background-color: rgb(240, 240, 250);
 }
 
-/* header style */
+/* ==== end of global style ==== */
+
+/* ==== header style ==== */
+
 header {
-    padding: 1.5rem 0 10rem;
+    padding: 1.5rem 0 8rem;
     text-align: center;
     background-color: rgb(60, 92, 52);
 }
@@ -31,32 +35,46 @@ header {
 #logo-dollar {
     color: lime;
 }
-/* end of header style */
 
-/* balance style */
+/* ==== end of header style ==== */
+
+/* ==== balance style ==== */
+
 main {
-    width: 100%;
-    height: 100%;
     display: flex;
-    position: relative;
+    flex-flow: column wrap;
+}
+
+main h2 {
+    margin-bottom: .5rem;
+    font-weight: normal;
+    color: rgb(0, 20, 58);
+}
+
+main h2#balance {
+    color: white;
 }
 
 .container {
-    position: absolute;
-    top: -10%;
+    width: 70vw;
+    display: flex;
+    flex-flow: column wrap;
+    margin: auto;
+    margin-top: -5rem;
+}
+
+.container > div {
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 1.5rem;
 }
 
 .money-container {
-    width: 300px;
-    padding: 1rem;
+    width: 33%;
     display: flex;
     flex-flow: column wrap;
-    gap: 1rem;
+    padding: 1rem;
     border-radius: 0.25rem;
     background-color: white;
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
@@ -77,6 +95,7 @@ main {
 }
 
 .money {
+    line-height: 3rem;
     font-size: 1.5em;
 }
 
@@ -84,7 +103,4 @@ main {
     height: 2em;
 }
 
-table {
-    height: fit-content;
-}
-/* end of balance style */
+/* ==== end of balance style ==== */
