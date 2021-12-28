@@ -18,6 +18,18 @@ body {
     background-color: rgb(240, 240, 250);
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 /* ==== end of global style ==== */
 
 /* ==== header style ==== */
@@ -26,18 +38,6 @@ header {
     padding: 1.5rem 0 8rem;
     text-align: center;
     background-color: rgb(60, 92, 52);
-}
-
-#logo {
-    color: white;
-}
-
-#logo-dot {
-    color: darkcyan;
-}
-
-#logo-dollar {
-    color: lime;
 }
 
 /* ==== end of header style ==== */
