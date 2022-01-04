@@ -66,7 +66,7 @@ const Utils = {
 
     //identifies which css class should be used to transition type based on money amount
     knowTransType(money) {
-        money = this.formatAmount(money)
+        
         const transType = money > 0 ? "income" : "outcome" 
         return transType
     },
