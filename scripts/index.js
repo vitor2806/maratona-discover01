@@ -215,5 +215,13 @@ const Utils = {
     },
 }
 
+const Window = {
+    switch: document.querySelector('.switch'),
+
+    switchTheme() {
+        body.classList.toggle('dark-theme')
+    },
+}
+
 
 App.init()
