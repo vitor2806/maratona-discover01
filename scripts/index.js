@@ -4,7 +4,6 @@ const newItemButton = document.querySelector('.new-item')
 const modalWindow = document.querySelector('.modal-background')
 const body = document.querySelector('body')
 
-
 //functions related to modal window
 const Modal = {
     //controls Modal window visibility
@@ -20,19 +19,114 @@ const Modal = {
         const date = Utils.formatDate(document.querySelector('#transaction-date').value)
         return {desc, amount, date}
     },
+}
 
-    //store getFormValues returned object into a local object then add a new row within
-    addItem() {
-        let { desc, amount, date } = Modal.getFormValues() 
-        let transType = Utils.knowTransType(amount)
-        document.querySelector('tbody').innerHTML += `
-        <tr>
-            <td class="description">${desc}</td>
-            <td class="${transType}">${Utils.formatAmount(amount)}</td>
-            <td class="date" >${date}</td>
-            <td><img src="./assets/minus.svg" alt="remover transação"></td>
-        </tr>      
+const transactions = [
+    {
+        description: 'Salario',
+        amount: 200000,
+        date: '23/10/2021'
+    },
+    {
+        description: 'Website',
+        amount: 500000,
+        date: '23/10/2021'
+    },
+    {
+        description: 'Gás',
+        amount: -20000,
+        date: '23/10/2021'
+    },
+]
+
+//functions related to transaction
+const Transaction = {
+    //gets all transactions then store into all attribute
+    all: transactions,
+
+    //gets a transaction then pushes it into all attribute then do a application refresh
+    add(transaction) {
+        this.all.push(transaction)
+        App.refresh()
+    },
+
+    //gets an index then removes row assigned to it
+    remove(index) {
+        Transaction.all.splice(index, 1)
+        App.refresh()
+    }
+}
+
+//functions related to transactions calc
+const Calculator = {
+    //Sum all transaction amounts that are bigger than 0
+    incomes() {
+        let income = 0
+        Transaction.all.forEach(transaction => {
+            if (transaction.amount > 0) {
+                income += transaction.amount
+            }
+        })
+        return income
+    },
+
+    //Sum all transaction amounts that are less than 0
+    out() {
+        let out = 0
+        Transaction.all.forEach(transaction => {
+            if (transaction.amount < 0) {
+                out += transaction.amount
+            }
+        })
+        return out
+    },
+
+    //Sum incomes and out
+    total() {
+        let total = 0
+        total = this.incomes() + this.out()
+        return total
+    }
+}
+
+//functions related to balance card
+const Balance = {
+    //update card values
+    updateBalance() {
+        document.getElementById('profit').innerHTML = Utils.formatCurrency(Calculator.incomes())
+        document.getElementById('loss').innerHTML = Utils.formatCurrency(Calculator.out())
+        document.getElementById('total-money').innerHTML = Utils.formatCurrency(Calculator.total())
+    }
+}
+
+//functions related to table element
+const Table = {
+    //selects tablebody and stores in tableBody attribute
+    tableBody: document.querySelector('tbody'),
+
+    //create a table row then calls generateHTML for table row content then appends it to the tableBody attribute
+    addItem(transaction, index) {
+        const tr = document.createElement('tr')
+        tr.innerHTML = this.generateHTML(transaction)
+        this.tableBody.appendChild(tr)
+    },
+
+    //store row formart as HTML then return it
+    generateHTML(transaction) {
+        const amount = Utils.formatCurrency(transaction.amount)
+        const transType = Utils.knowTransType(transaction.amount)
+
+        const rowContent = `
+            <td class="description">${transaction.description}</td>
+            <td class="${transType}">${amount}</td>
+            <td class="date">${transaction.date}</td>
+            <td><img src="./assets/minus.svg" alt="remover transação"></td>    
         `
+        return rowContent
+    },
+
+    clearTable() {
+        this.tableBody.innerHTML = ""
     },
 }
 
@@ -47,7 +141,7 @@ const Utils = {
     //removes any comma or dot from money string then multiplies it by 100, example: 100,00 turns into 10000
     formatAmount(money) {
         money = (money.replace(/\.\,/g, "") * 100)
-        return this.formatCurrency(money)
+        return money
     },
 
     //converts 10000 into 100,00, format currency into BRL and adds signal for transaction type
@@ -66,12 +160,32 @@ const Utils = {
 
     //identifies which css class should be used to transition type based on money amount
     knowTransType(money) {
-        
-        const transType = money > 0 ? "income" : "outcome" 
+        const transType = money > 0 ? "income" : "out" 
         return transType
     },
 }
 
-saveButton.addEventListener('click', Modal.addItem)
+//functions related to app initialization
+const App = {
+    //initialize application
+    init() {
+        Transaction.all.forEach((transaction) => {
+            Table.addItem(transaction)
+        })
+
+        Balance.updateBalance()
+    },
+
+    //refreshes application
+    refresh() {
+        Table.clearTable()
+        App.init()
+    },
+}
+
+App.init()
+
+Transaction.remove(0)
+
 newItemButton.addEventListener('click', Modal.viewModal)
 exitButton.addEventListener('click', Modal.viewModal)
