@@ -4,6 +4,37 @@ const newItemButton = document.querySelector('.new-item')
 const modalWindow = document.querySelector('.modal-background')
 const body = document.querySelector('body')
 
+//functions related to table element
+const Table = {
+    //selects tablebody and stores in tableBody attribute
+    tableBody: document.querySelector('tbody'),
+
+    //create a table row then calls generateHTML for table row content then appends it to the tableBody attribute
+    addItem(transaction, index) {
+        const tr = document.createElement('tr')
+        tr.innerHTML = this.generateHTML(transaction)
+        this.tableBody.appendChild(tr)
+    },
+
+    //store row formart as HTML then return it
+    generateHTML(transaction) {
+        const amount = Utils.formatCurrency(transaction.amount)
+        const transType = Utils.knowTransType(transaction.amount)
+
+        const rowContent = `
+            <td class="description">${transaction.description}</td>
+            <td class="${transType}">${amount}</td>
+            <td class="date">${transaction.date}</td>
+            <td><img src="./assets/minus.svg" alt="remover transação"></td>    
+        `
+        return rowContent
+    },
+
+    clearTable() {
+        this.tableBody.innerHTML = ""
+    },
+}
+
 //functions related to modal window
 const Modal = {
     //controls Modal window visibility
@@ -16,33 +47,55 @@ const Modal = {
     getFormValues() {
         const desc = document.querySelector('#transaction-desc').value
         const amount = document.querySelector('#transaction').value
-        const date = Utils.formatDate(document.querySelector('#transaction-date').value)
+        const date = document.querySelector('#transaction-date').value
         return {desc, amount, date}
     },
-}
 
-const transactions = [
-    {
-        description: 'Salario',
-        amount: 200000,
-        date: '23/10/2021'
+    validateForm() {
+        const {desc, amount, date} = this.getFormValues()
+        if(desc.trim() === '' || amount.trim() === '' || date.trim() === '') {
+            throw new Error('Preencha todos os campos')
+        }
     },
-    {
-        description: 'Website',
-        amount: 500000,
-        date: '23/10/2021'
+
+    handleError(err) {
+        const errorModal = document.querySelector('.error')
+        errorModal.innerHTML = err.message
+        errorModal.classList.toggle('active')
     },
-    {
-        description: 'Gás',
-        amount: -20000,
-        date: '23/10/2021'
-    },
-]
+
+    submitForm(event) {
+        event.preventDefault()
+
+        try {
+            this.validateForm()
+        } catch (err) {
+            this.handleError(err)
+        }
+        
+    }
+}
 
 //functions related to transaction
 const Transaction = {
     //gets all transactions then store into all attribute
-    all: transactions,
+    all: [
+        {
+            description: 'Salario',
+            amount: 200000,
+            date: '23/10/2021'
+        },
+        {
+            description: 'Website',
+            amount: 500000,
+            date: '23/10/2021'
+        },
+        {
+            description: 'Gás',
+            amount: -20000,
+            date: '23/10/2021'
+        },
+    ],
 
     //gets a transaction then pushes it into all attribute then do a application refresh
     add(transaction) {
@@ -97,37 +150,6 @@ const Balance = {
         document.getElementById('loss').innerHTML = Utils.formatCurrency(Calculator.out())
         document.getElementById('total-money').innerHTML = Utils.formatCurrency(Calculator.total())
     }
-}
-
-//functions related to table element
-const Table = {
-    //selects tablebody and stores in tableBody attribute
-    tableBody: document.querySelector('tbody'),
-
-    //create a table row then calls generateHTML for table row content then appends it to the tableBody attribute
-    addItem(transaction, index) {
-        const tr = document.createElement('tr')
-        tr.innerHTML = this.generateHTML(transaction)
-        this.tableBody.appendChild(tr)
-    },
-
-    //store row formart as HTML then return it
-    generateHTML(transaction) {
-        const amount = Utils.formatCurrency(transaction.amount)
-        const transType = Utils.knowTransType(transaction.amount)
-
-        const rowContent = `
-            <td class="description">${transaction.description}</td>
-            <td class="${transType}">${amount}</td>
-            <td class="date">${transaction.date}</td>
-            <td><img src="./assets/minus.svg" alt="remover transação"></td>    
-        `
-        return rowContent
-    },
-
-    clearTable() {
-        this.tableBody.innerHTML = ""
-    },
 }
 
 //functions related to convert, format etc
@@ -185,7 +207,6 @@ const App = {
 
 App.init()
 
-Transaction.remove(0)
 
 newItemButton.addEventListener('click', Modal.viewModal)
 exitButton.addEventListener('click', Modal.viewModal)

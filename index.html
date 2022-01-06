@@ -10,9 +10,11 @@
 </head>
 <body>
     <div class="modal-background">
+        <div class="error">
+        </div>
         <div class="modal">
             <h2>Nova Transação</h2>
-            <form action="">
+            <form action="" onsubmit="Modal.submitForm(event)">
                 <label for="transaction-desc" class="sr-only">Descrição da transação</label>
                 <input type="text" name="transaction-desc" id="transaction-desc" placeholder="Descrição">
                 <label for="transaction" class="sr-only">Valor da transação</label>
@@ -20,10 +22,10 @@
                 <p id="input-desc">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</p>
                 <label for="transaction-date" class="sr-only"></label>
                 <input type="date" name="transaction-date" id="transaction-date">
+                <section class="button-control">
+                    <button id="exit">Cancelar</button><button id="save" type="submit">Salvar</button>
+                </section>
             </form>
-            <section class="button-control">
-                <button id="exit">Cancelar</button><button id="save" type="submit">Salvar</button>
-            </section>
         </div>
     </div>
 

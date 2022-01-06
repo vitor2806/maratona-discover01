@@ -286,6 +286,23 @@ td.out {
     background: rgb(60, 92, 52);
 }
 
+.error {
+    width: 100%;
+    position: absolute;
+    top: 0%;
+    font-size: .9rem;
+    text-align: center;
+    background-color: #d00;
+    color: white;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.error.active {
+    visibility: unset;
+    opacity: 1;
+}
+
 
 /* ==== end of modal style ==== */
 
