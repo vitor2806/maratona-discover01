@@ -110,7 +110,6 @@ const Modal = {
         try {
             this.validateForm()
             const readyTransaction = this.formatValues()
-            console.log(readyTransaction)
             Transaction.add(readyTransaction)
             this.clearForm()
             Modal.viewModal()

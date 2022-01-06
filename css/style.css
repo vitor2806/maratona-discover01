@@ -38,6 +38,7 @@ body {
 .wrapper {
     width: 60vw;
 }
+
 /* ==== end of global style ==== */
 
 /* ==== header style ==== */
@@ -306,6 +307,159 @@ td.out {
 
 /* ==== end of modal style ==== */
 
+/* ==== dark theme ==== */
+
+.dark-theme {
+    background-color: rgb(36, 36, 36);
+    color: white;
+}
+
+body.dark-theme .money-container {
+    background-color: rgba(70, 70, 70, 1);
+    color: white;
+}
+
+body.dark-theme #data-table thead th {
+    color: white;
+    opacity: .7;
+}
+
+body.dark-theme #data-table tbody td {
+    background-color: rgba(70, 70, 70, 1);
+}
+
+body.dark-theme #data-table tbody td:nth-child(1),
+body.dark-theme #data-table tbody td:nth-child(3) {
+    color: white;
+}
+
+body.dark-theme .income {
+    color: lime;
+}
+
+body.dark-theme .out {
+    font-weight: 600;
+    color: red;
+}
+
+body.dark-theme #data-table tbody tr {
+    background: rgba(50, 50, 50);
+}
+
+body.dark-theme .modal-background {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+body.dark-theme .modal {
+    background-color: rgba(50, 50, 50);
+    color: white;
+}
+
+body.dark-theme .modal h2 {
+    color: white;
+}
+
+body.dark-theme #input-desc {
+    color: white;
+    opacity: .5;
+}
+
+body.dark-theme .modal form input {
+    background-color: rgba(70, 70, 70, 1);
+    color: white;
+    font-weight: 500;
+}
+
+body.dark-theme #exit {
+    background-color: red;
+    border-color: red;
+    color: white;
+}
+
+body.dark-theme #exit:focus,
+body.dark-theme #exit:hover {
+    background-color: transparent;
+    font-weight: 600;
+    color: red;
+}
+
+@supports (backdrop-filter: blur(10px)) {
+    body.dark-theme .money-container {
+        background-color: rgba(70, 70, 70, 0.8);
+        color: white;
+        backdrop-filter: blur(10px)
+    }
+
+    body.dark-theme #data-table thead th {
+        color: white;
+        opacity: .7;
+    }
+    
+    body.dark-theme #data-table tbody td {
+        background-color: rgba(70, 70, 70, 0.5);
+        backdrop-filter: blur(10px);
+    }
+
+    body.dark-theme #data-table tbody td:nth-child(1),
+    body.dark-theme #data-table tbody td:nth-child(3) {
+        color: white;
+    }
+
+    body.dark-theme .income {
+        color: lime;
+    }
+
+    body.dark-theme .out {
+        font-weight: 600;
+        color: red;
+    }
+
+    body.dark-theme #data-table tbody tr {
+        background: rgba(50, 50, 50);
+        backdrop-filter: blur(10px)
+    }
+
+    body.dark-theme .modal-background {
+        background-color: rgba(0, 0, 0, 0.85);
+    }
+
+    body.dark-theme .modal {
+        background-color: rgba(50, 50, 50);
+        color: white;
+    }
+
+    body.dark-theme .modal h2 {
+        color: white;
+    }
+
+    body.dark-theme #input-desc {
+        color: white;
+        opacity: .5;
+    }
+
+    body.dark-theme .modal form input {
+        background-color: rgba(70, 70, 70, 0.5);
+        backdrop-filter: blur(10px);
+        color: white;
+        font-weight: 500;
+    }
+
+    body.dark-theme #exit {
+        background-color: red;
+        border-color: red;
+        color: white;
+    }
+
+    body.dark-theme #exit:focus,
+    body.dark-theme #exit:hover {
+        background-color: transparent;
+        font-weight: 600;
+        color: red;
+    }
+}
+
+
+
 /* ==== footer style ==== */
 
 footer {
@@ -319,10 +473,6 @@ footer {
 /* === responsivity === */
 
 @media (max-width: 1280px) {
-
-    html {
-        font-size: 0.9rem;
-    }
 
     .wrapper {
         width: 80vw;
