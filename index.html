@@ -23,7 +23,8 @@
                 <label for="transaction-date" class="sr-only"></label>
                 <input type="date" name="transaction-date" id="transaction-date">
                 <section class="button-control">
-                    <button id="exit">Cancelar</button><button id="save" type="submit">Salvar</button>
+                    <button id="exit" onclick="Modal.viewModal()" type="button">Cancelar</button>
+                    <button id="save" type="submit">Salvar</button>
                 </section>
             </form>
         </div>
@@ -42,7 +43,7 @@
                         <h3>Entradas</h3>
                         <img src="./assets/profit.svg" alt="Ícone de lucro">
                     </div>
-                    <p class="money" id="profit">R$ 5.000,00</p>
+                    <p class="money" id="profit">R$ 0,00</p>
                 </section>
     
                 <section class="money-container">
@@ -50,7 +51,7 @@
                         <h3>Saídas</h3>
                         <img src="./assets/loss.svg" alt="Ícone de prejuízo">    
                     </div>
-                    <p class="money" id="loss">R$ 4.000,00</p>
+                    <p class="money" id="loss">R$ 0,00</p>
                 </section>
     
                 <section id="total" class="money-container">
@@ -58,14 +59,14 @@
                         <h3>Total</h3>
                         <img src="./assets/total.svg" alt="Ícone de total">
                     </div>
-                    <p class="money" id="total-money">R$ 1.000,00</p>  
+                    <p class="money" id="total-money">R$ 0,00</p>  
                 </section>
             </div>
         </div>
 
         <section class="table-container wrapper">
             <h2 class="sr-only">Transações</h2>
-            <a href="#" class="button new-item">+ Nova Transação</a>
+            <a href="#" class="button new-item" onclick="Modal.viewModal()">+ Nova Transação</a>
             <table id="data-table">
                 <thead>
                     <tr>

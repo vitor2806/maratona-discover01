@@ -1,8 +1,32 @@
-const exitButton = document.querySelector('#exit')
-const saveButton = document.querySelector('#save')
-const newItemButton = document.querySelector('.new-item')
 const modalWindow = document.querySelector('.modal-background')
 const body = document.querySelector('body')
+
+//functions related to app initialization
+const App = {
+    //initialize application
+    init() {
+        Transaction.all.forEach(Table.addItem)
+
+        Balance.updateBalance()
+        Storage.set(Transaction.all)
+    },
+
+    //refreshes application
+    refresh() {
+        Table.clearTable()
+        App.init()
+    },
+}
+
+const Storage = {
+    get() {
+        return JSON.parse(localStorage.getItem("table-transactions")) || []
+    },
+
+    set(transactions) {
+        localStorage.setItem("table-transactions", JSON.stringify(transactions))
+    }
+}
 
 //functions related to table element
 const Table = {
@@ -12,20 +36,21 @@ const Table = {
     //create a table row then calls generateHTML for table row content then appends it to the tableBody attribute
     addItem(transaction, index) {
         const tr = document.createElement('tr')
-        tr.innerHTML = this.generateHTML(transaction)
-        this.tableBody.appendChild(tr)
+        tr.innerHTML = Table.generateHTML(transaction, index)
+        tr.dataset.index
+
+        Table.tableBody.appendChild(tr)
     },
 
     //store row formart as HTML then return it
-    generateHTML(transaction) {
-        const amount = Utils.formatCurrency(transaction.amount)
+    generateHTML(transaction, index) {
+        amount = Utils.formatCurrency(transaction.amount)
         const transType = Utils.knowTransType(transaction.amount)
-
         const rowContent = `
-            <td class="description">${transaction.description}</td>
+            <td class="description">${transaction.desc}</td>
             <td class="${transType}">${amount}</td>
             <td class="date">${transaction.date}</td>
-            <td><img src="./assets/minus.svg" alt="remover transação"></td>    
+            <td onclick="Transaction.remove(${index})"><img src="./assets/minus.svg" alt="remover transação"></td>    
         `
         return rowContent
     },
@@ -58,6 +83,21 @@ const Modal = {
         }
     },
 
+    formatValues() {
+        let {desc , amount, date} = this.getFormValues()
+        date = Utils.formatDate(date)
+        amount = Utils.formatAmount(amount)
+        return {desc, amount, date}
+    },
+
+    clearForm() {
+        let {desc, amount, date} = this.getFormValues()
+        desc = ""
+        amount = ""
+        date = ""
+        return (desc, amount, date)
+    },
+
     handleError(err) {
         const errorModal = document.querySelector('.error')
         errorModal.innerHTML = err.message
@@ -69,6 +109,11 @@ const Modal = {
 
         try {
             this.validateForm()
+            const readyTransaction = this.formatValues()
+            console.log(readyTransaction)
+            Transaction.add(readyTransaction)
+            this.clearForm()
+            Modal.viewModal()
         } catch (err) {
             this.handleError(err)
         }
@@ -79,27 +124,10 @@ const Modal = {
 //functions related to transaction
 const Transaction = {
     //gets all transactions then store into all attribute
-    all: [
-        {
-            description: 'Salario',
-            amount: 200000,
-            date: '23/10/2021'
-        },
-        {
-            description: 'Website',
-            amount: 500000,
-            date: '23/10/2021'
-        },
-        {
-            description: 'Gás',
-            amount: -20000,
-            date: '23/10/2021'
-        },
-    ],
-
+    all: Storage.get(),
     //gets a transaction then pushes it into all attribute then do a application refresh
     add(transaction) {
-        this.all.push(transaction)
+        this.all.unshift(transaction)
         App.refresh()
     },
 
@@ -168,7 +196,8 @@ const Utils = {
 
     //converts 10000 into 100,00, format currency into BRL and adds signal for transaction type
     formatCurrency(money) {
-        const signal = money > 0 ? "+ " : "- "
+        const signal = Number(money) > 0 ? "+ " : "- "
+        
         money = String(money).replace(/\D/g, "")
         money = Number(money)/100
 
@@ -176,7 +205,7 @@ const Utils = {
             style: "currency",
             currency: "BRL"
         })
-
+        
         return signal + money
     },
 
@@ -187,26 +216,5 @@ const Utils = {
     },
 }
 
-//functions related to app initialization
-const App = {
-    //initialize application
-    init() {
-        Transaction.all.forEach((transaction) => {
-            Table.addItem(transaction)
-        })
-
-        Balance.updateBalance()
-    },
-
-    //refreshes application
-    refresh() {
-        Table.clearTable()
-        App.init()
-    },
-}
 
 App.init()
-
-
-newItemButton.addEventListener('click', Modal.viewModal)
-exitButton.addEventListener('click', Modal.viewModal)
